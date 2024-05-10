@@ -1,6 +1,5 @@
 #! /usr/bin/env bash
 # shellcheck disable=SC2236
-# SC2236 is a stylistic issue that does not affect correctness and is invalid for inverting a variable check "! -z ${VAR+x}"
 
 do_fatal() {
   printf '[%b] %s\n' "\033[91mFATAL\033[0m" "${@}"

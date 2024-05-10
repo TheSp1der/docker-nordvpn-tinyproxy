@@ -1,13 +1,10 @@
-FROM alpine:latest
+FROM registry.c.test-chamber-13.lan/dockerhub/library/alpine:latest
 
-RUN apk add --no-cache openvpn tinyproxy iputils bind-tools curl bash jq file && \
-    cd /etc/openvpn && \
-    curl --location --silent --fail https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip -o /tmp/ovpn.zip && \
-    unzip /tmp/ovpn.zip && \
-    rm /tmp/ovpn.zip
+RUN apk add --no-cache openvpn tinyproxy iputils bind-tools curl bash jq file
 
-WORKDIR /
-
+COPY openvpn/* /etc/openvpn/
 COPY scripts/ /usr/local/bin/
 
-ENTRYPOINT ["/bin/sh", "-c", "/usr/local/bin/healthcheck.sh -s; /usr/local/bin/startup.sh" ]
+WORKDIR /root
+
+ENTRYPOINT ["/bin/bash", "-c", "healthcheck.sh -s; startup.sh" ]

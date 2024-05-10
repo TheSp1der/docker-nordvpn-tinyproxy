@@ -1,6 +1,5 @@
 #! /usr/bin/env sh
 # shellcheck disable=SC2236
-# SC2236 is a stylistic issue that does not affect correctness and is invalid for inverting a variable check "! -z ${VAR+x}"
 
 PORT=${PORT:-8888}
 OPENVPN_CREDS=${OPENVON_CREDS:-"./openvpn.pass"}
